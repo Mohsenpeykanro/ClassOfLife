@@ -1,0 +1,3 @@
+/Users/mohsen/CLionProjects/ClassOfLife/cmake-build-debug/CMakeFiles/ClassOfLife.dir
+/Users/mohsen/CLionProjects/ClassOfLife/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mohsen/CLionProjects/ClassOfLife/cmake-build-debug/CMakeFiles/rebuild_cache.dir
