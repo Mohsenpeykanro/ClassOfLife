@@ -253,23 +253,3 @@ void Cell::palindrome(string s){
 
     }
 }
-//method in class cell
-// c.die();
-// c.small_mutation('A','C',3,2);
-//c.big_mutation("CATA",1,"TAG",2);
-
-//method in class gene
-// string s1,s2,s3;
-// cin>>s1>>s2>>s3;
-// Gene g;
-// g.RNA=s1;
-// g.DNA[0]=s2;
-// g.DNA[1]=s3;
-// g.make_DNA(g.RNA);
-// cout<<g.DNA[0]<<endl<<g.DNA[1];
-//g.small_mutation_RNA('G','A',3);
-// g.small_mutation_DNA('G','A',3);
-// g.big_mutation_RNA("TAG","CAT");
-// g.big_mutation_DNA("TAG","CAT");
-//cout<<g.RNA<<endl;
-//g.reverse_mutation_DNA("CAT");
