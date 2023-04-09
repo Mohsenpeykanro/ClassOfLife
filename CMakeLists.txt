@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(ClassOfLife
         main.cpp
-        cell.h cell.cpp)
+        cell.h cell.cpp Animal.h Animal.cpp)

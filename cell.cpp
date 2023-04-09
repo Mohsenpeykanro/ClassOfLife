@@ -32,6 +32,8 @@ void Gene:: setDNA(string s1,string s2){
     DNA[0]=s1;
     DNA[1]=s2;
 }
+
+
 void Gene::make_DNA(){
     DNA[0]=RNA;
     DNA[1]=complement(RNA);

@@ -15,6 +15,9 @@ public:
     void setRNA(string s);
     void setDNA(string s1,string s2);
 
+    string getDNA(){
+        return DNA[0];
+    }
     void make_DNA();
 
     void small_mutation_RNA(char a,char b,int n);
@@ -28,7 +31,7 @@ public:
 };
 class Cell:public Gene{
 public:
-    vector<Gene>chro;
+    vector<Gene> chro;
 
     void show();
 
