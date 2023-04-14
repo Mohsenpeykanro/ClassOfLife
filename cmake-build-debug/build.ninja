@@ -60,6 +60,13 @@ build CMakeFiles/ClassOfLife.dir/cell.cpp.o: CXX_COMPILER__ClassOfLife_Debug /Us
   OBJECT_DIR = CMakeFiles/ClassOfLife.dir
   OBJECT_FILE_DIR = CMakeFiles/ClassOfLife.dir
 
+build CMakeFiles/ClassOfLife.dir/Animal.cpp.o: CXX_COMPILER__ClassOfLife_Debug /Users/mohsen/CLionProjects/ClassOfLife/Animal.cpp || cmake_object_order_depends_target_ClassOfLife
+  DEP_FILE = CMakeFiles/ClassOfLife.dir/Animal.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++14
+  INCLUDES = -I/Users/mohsen/CLionProjects/ClassOfLife/.
+  OBJECT_DIR = CMakeFiles/ClassOfLife.dir
+  OBJECT_FILE_DIR = CMakeFiles/ClassOfLife.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ClassOfLife
@@ -68,7 +75,7 @@ build CMakeFiles/ClassOfLife.dir/cell.cpp.o: CXX_COMPILER__ClassOfLife_Debug /Us
 #############################################
 # Link the executable ClassOfLife
 
-build ClassOfLife: CXX_EXECUTABLE_LINKER__ClassOfLife_Debug CMakeFiles/ClassOfLife.dir/main.cpp.o CMakeFiles/ClassOfLife.dir/cell.cpp.o
+build ClassOfLife: CXX_EXECUTABLE_LINKER__ClassOfLife_Debug CMakeFiles/ClassOfLife.dir/main.cpp.o CMakeFiles/ClassOfLife.dir/cell.cpp.o CMakeFiles/ClassOfLife.dir/Animal.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
   OBJECT_DIR = CMakeFiles/ClassOfLife.dir
   POST_BUILD = :

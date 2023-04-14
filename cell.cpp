@@ -1,8 +1,8 @@
-#include "cell.h"
-#include<iostream>
+ #include<iostream>
 #include<string>
 #include<algorithm>
 #include<vector>
+#include"cell.h"
 using namespace std;
 string complement(string s){
     for(int i=0;i<s.size();i++){
@@ -24,29 +24,21 @@ bool is_palidrome(string s){
         if(s[i]!=x[0])
             return false;
     }
-    return true;
+        return true;
 }
-class Gene{
-public:
-    string RNA;
-    string DNA[2];
-
-    void make_DNA(string s);
-
-    void small_mutation_RNA(char a,char b,int n);
-    void small_mutation_DNA(char a,char b,int n);
-
-    void big_mutation_RNA(string s1,string s2);
-    void big_mutation_DNA(string s1,string s2);
-
-    void reverse_mutation_RNA(string s);
-    void reverse_mutation_DNA(string s);
-};
-void Gene::make_DNA(string s){
-    DNA[0]=s;
-    DNA[1]=complement(s);
+void Gene:: setRNA(string s){
+    RNA=s;
 }
-//flag counts the number of mutation.
+void Gene:: setDNA(string s1,string s2){
+    DNA[0]=s1;
+    DNA[1]=s2;
+}
+
+
+void Gene::make_DNA(){
+    DNA[0]=RNA;
+    DNA[1]=complement(RNA);
+}
 void Gene:: small_mutation_RNA(char a,char b,int n){
     int flag=0;
     for(int i=0;i<RNA.size();i++){
@@ -55,8 +47,9 @@ void Gene:: small_mutation_RNA(char a,char b,int n){
             flag++;
         }
     }
-}
-void Gene::small_mutation_DNA(char a,char b,int n){
+    cout<<RNA<<endl;
+ }
+ void Gene::small_mutation_DNA(char a,char b,int n){
     int flag=0;
     for(int i=0;i<DNA[0].size();i++){
         if((DNA[0][i]==a || DNA[1][i]==a)&& flag<n){
@@ -74,19 +67,17 @@ void Gene::small_mutation_DNA(char a,char b,int n){
             }
         }
     }
-}
-void Gene::big_mutation_RNA(string s1,string s2){
+    cout<<DNA[0]<<endl<<DNA[1]<<endl;
+ }
+ void Gene::big_mutation_RNA(string s1,string s2){
     int pos=RNA.find(s1);
     RNA.replace(pos,s1.size(),s2);
 }
-/*s2 is the string that we want to replace with it if s1 is found  in the DNA.
-  beacuse priority,I set the position that founds s1 in DNA to maximum size of DNA instead of -1 and it means that 
-  we can not found s1 in DNA.*/
 void Gene::big_mutation_DNA(string s1,string s2){
     int pos1=DNA[0].size(),pos2=DNA[1].size();
     if(DNA[0].find(s1)!=string::npos)
         pos1=DNA[0].find(s1);
-    if(DNA[1].find(s1)!=string::npos)
+     if(DNA[1].find(s1)!=string::npos)
         pos2=DNA[1].find(s1);
     if(pos1<pos2){
         DNA[0].replace(pos1,s1.size(),s2);
@@ -98,8 +89,9 @@ void Gene::big_mutation_DNA(string s1,string s2){
         string temp=complement(s2);
         DNA[0].replace(pos2,s1.size(),temp);
     }
-}
-void Gene::reverse_mutation_RNA(string s){
+    cout<<DNA[0]<<endl<<DNA[1];
+ }
+ void Gene::reverse_mutation_RNA(string s){
     if(RNA.find(s)!=string::npos){
         int pos=RNA.find(s);
         reverse(s.begin(),s.end());
@@ -109,8 +101,6 @@ void Gene::reverse_mutation_RNA(string s){
     else
         cout<<"NOT FOUND!";
 }
-/* pos1 and pos2 are like what we have in big mutation.
-   After finding s1 in DNA, we reverse s1 and put it in DNA.*/
 void Gene::reverse_mutation_DNA(string s){
     int pos1=DNA[0].size(),pos2=DNA[1].size();
     if(DNA[0].find(s)!=string::npos)
@@ -128,27 +118,15 @@ void Gene::reverse_mutation_DNA(string s){
         DNA[1].replace(pos2,s.size(),s);
         DNA[0].replace(pos2,s.size(),temp);
     }
+    cout<<DNA[0]<<endl<<DNA[1];
 }
-class Cell{
-public:
-    vector<Gene>chro;
-
-    void show();
-
-    void receive_chro(int n);
-    void die();
-    void small_mutation(char a,char b,int n,int m);
-    void big_mutation(string s1,int n,string s2,int m);
-    void reverse_mutation(string s,int n);
-    void palindrome(string s);
-};
 void Cell:: show(){
-    for(int i=0;i<chro.size();i++){
-        cout<<chro[i].DNA[0]<<endl
-            <<chro[i].DNA[1]<<endl;
-
-    }
-
+for(int i=0;i<chro.size();i++){
+    cout<<chro[i].DNA[0]<<endl
+        <<chro[i].DNA[1]<<endl;
+        
+}
+    
 }
 void Cell::receive_chro(int n){
     Gene g;
@@ -234,7 +212,7 @@ void Cell::big_mutation(string s1,int n,string s2,int m){
         chro[m].DNA[0].replace(posm2,s2.size(),complement(s1));
     }
     show();
-}
+}       
 void Cell::reverse_mutation(string s,int n){
     int pos1=chro[n-1].DNA[0].size();
     int pos2=chro[n-1].DNA[1].size();
@@ -245,22 +223,31 @@ void Cell::reverse_mutation(string s,int n){
     reverse(s.begin(),s.end());
     string temp=complement(s);
     if(pos1<pos2){
-        chro[n-1].DNA[0].replace(pos1,s.size(),s);
-        chro[n-1].DNA[1].replace(pos1,s.size(),temp);
+       chro[n-1].DNA[0].replace(pos1,s.size(),s);
+       chro[n-1].DNA[1].replace(pos1,s.size(),temp); 
     }
     else{
-        chro[n-1].DNA[1].replace(pos2,s.size(),s);
-        chro[n-1].DNA[0].replace(pos2,s.size(),temp);
+       chro[n-1].DNA[1].replace(pos2,s.size(),s);
+       chro[n-1].DNA[0].replace(pos2,s.size(),temp);  
     }
     show();
 }
-// First, we find all the substrings and after making sure that they are palindromes, we print them.
 void Cell::palindrome(string s){
     for(int i=0;i<s.size();i++){
         string temp="";
         temp+=s[i];
         for(int j=i;j<s.size()-1;j++){
             temp+=s[j+1];
+            if(is_palidrome(temp) && temp.size()>2 && temp.size()%2==0)
+                cout<<temp<<endl;
+        }
+
+    }
+      for(int i=0;i<s1.size();i++){
+        string temp="";
+        temp+=s1[i];
+        for(int j=i;j<s1.size()-1;j++){
+            temp+=s1[j+1];
             if(is_palidrome(temp) && temp.size()>2 && temp.size()%2==0)
                 cout<<temp<<endl;
         }
