@@ -15,6 +15,10 @@ public:
     void setRNA(string s);
     void setDNA(string s1,string s2);
 
+    const string &getRna() const;
+
+    const string *getDna() const;
+
     string getDNA(){
         return DNA[0];
     }

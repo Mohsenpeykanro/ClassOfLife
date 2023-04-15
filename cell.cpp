@@ -25,18 +25,27 @@ bool is_palidrome(string s){
     }
         return true;
 }
-void Gene:: setRNA(string s){
+void Gene::setRNA(string s){
     RNA=s;
 }
-void Gene:: setDNA(string s1,string s2){
+void Gene::setDNA(string s1,string s2){
     DNA[0]=s1;
     DNA[1]=s2;
 }
 
+ const string &Gene::getRna() const {
+     return RNA;
+ }
+ const string *Gene::getDna() const {
+     return DNA;
+ }
 
 void Gene::make_DNA(){
     DNA[0]=RNA;
     DNA[1]=complement(RNA);
+    cout << "* Your DNA is: \n";
+    cout << DNA[0] << endl;
+    cout << DNA[1] << endl;
 }
  void Gene:: small_mutation_RNA(char a,char b,int n){
     int flag=0;
@@ -120,7 +129,9 @@ void Gene::reverse_mutation_DNA(string s){
     }
     cout<<DNA[0]<<endl<<DNA[1];
 }
-void Cell:: show(){
+
+
+ void Cell:: show(){
 for(int i=0;i<chro.size();i++){
     cout<<chro[i].DNA[0]<<endl
         <<chro[i].DNA[1]<<endl;
@@ -131,12 +142,19 @@ for(int i=0;i<chro.size();i++){
 void Cell::receive_chro(int n){
     Gene g;
     for(int i=0;i<n;i++){
-        string s1,s2;
-        cin>>s1>>s2;
+        string s1, s2;
+        cout << "First DNA Strand: \n";
+        cin >> s1;
+        cout << "Second DNA Strand: \n";
+        cin >> s2;
+        ::system("clear");
         g.DNA[0]=s1;
         g.DNA[1]=s2;
         chro.push_back(g);
     }
+    cout << "Press Enter to Continue";
+    cin.ignore();
+    ::system("clear");
 }
 void Cell::die(){
     int count=0,count_AT=0,count_CG=0;
