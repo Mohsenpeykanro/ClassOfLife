@@ -17,6 +17,7 @@ string complement(string s){
     }
     return s;
 }
+//string(1,s[s.size()-i-1] this is used to change a char to string and store in x.
 bool is_palidrome(string s){
     for(int i=0;i<s.size()/2;i++){
         string x=complement(string(1,s[s.size()-i-1]));
@@ -47,7 +48,7 @@ void Gene::make_DNA(){
     cout << DNA[0] << endl;
     cout << DNA[1] << endl;
 }
- void Gene:: small_mutation_RNA(char a,char b,int n){
+void Gene:: small_mutation_RNA(char a,char b,int n){
     int flag=0;
     for(int i=0;i<RNA.size();i++){
         if(RNA[i]==a && flag<n){
@@ -80,11 +81,10 @@ void Gene::make_DNA(){
  void Gene::big_mutation_RNA(string s1,string s2){
     int pos=RNA.find(s1);
     RNA.replace(pos,s1.size(),s2);
-    cout<<RNA<<endl;
- }
- void Gene::big_mutation_DNA(string s1,string s2){
-     int pos1=DNA[0].size(),pos2=DNA[1].size();
-     if(DNA[0].find(s1)!=string::npos)
+}
+void Gene::big_mutation_DNA(string s1,string s2){
+    int pos1=DNA[0].size(),pos2=DNA[1].size();
+    if(DNA[0].find(s1)!=string::npos)
         pos1=DNA[0].find(s1);
      if(DNA[1].find(s1)!=string::npos)
         pos2=DNA[1].find(s1);
@@ -108,8 +108,8 @@ void Gene::make_DNA(){
         cout<<RNA;
     }
     else
-    cout<<"NOT FOUND!";
- }
+        cout<<"NOT FOUND!";
+}
 void Gene::reverse_mutation_DNA(string s){
     int pos1=DNA[0].size(),pos2=DNA[1].size();
     if(DNA[0].find(s)!=string::npos)
@@ -156,6 +156,11 @@ void Cell::receive_chro(int n){
     cin.ignore();
     ::system("clear");
 }
+/* count: counts the number of chars in DNA that do not form a bond (does not match their complement)
+   count_AT: counts the number of A or T nucleotides.
+   count_CG: counts the number of C or G nucleotides.
+   count>5 or count_AT>3*count_CG: condition of death of a cell.
+*/
 void Cell::die(){
     int count=0,count_AT=0,count_CG=0;
     for(int i=0;i<chro.size();i++){
@@ -167,13 +172,14 @@ void Cell::die(){
                 count_AT++;
             else
                 count_CG++;
-
         }
         if(count>5 || count_AT>3*count_CG)
             chro.erase(chro.begin()+i);
     }
     show();
 }
+// m=m-1: It is used only to convert the i-th chromosome to its index.
+//flag: counts the number of mutation.
 void Cell::small_mutation(char a,char b,int n,int m){
     m=m-1;
     int flag=0;
@@ -243,11 +249,8 @@ void Cell::reverse_mutation(string s,int n){
        chro[n-1].DNA[0].replace(pos2,s.size(),temp);  
     }
     show();
-    }
-void Cell::palindrome(int n){
-    n=n-1;
-    string s=chro[n].DNA[0];
-    string s1=chro[n].DNA[1];
+}
+void Cell::palindrome(string s){
     for(int i=0;i<s.size();i++){
         string temp="";
         temp+=s[i];
