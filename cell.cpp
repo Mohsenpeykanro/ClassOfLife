@@ -250,7 +250,10 @@ void Cell::reverse_mutation(string s,int n){
     }
     show();
 }
-void Cell::palindrome(string s){
+
+void Cell::palindrome(int n){
+    string s = chro[n-1].DNA[0];
+    string s1 = chro[n-1].DNA[1];
     for(int i=0;i<s.size();i++){
         string temp="";
         temp+=s[i];
