@@ -90,6 +90,7 @@ void GenomeMenu(){
                 ::system("clear");
                 cout << "How Many RNA You Want to Create? ";
                 cin >> a;
+                cin.ignore();
                 for (int i = 0; i < a; ++i) {
                     Gene gt2;
                     cout << "RNA Strand: \n";
@@ -104,14 +105,14 @@ void GenomeMenu(){
                 break;
             case 3:
                 ::system("clear");
-                cout << "How Many RNA You Want to Create From RNA? ";
+                cout << "How Many DNA You Want to Create From RNA? ";
                 cin >> a;
+                cin.ignore();
                 for (int i = 0; i < a; ++i) {
-                    Gene gt2;
-                    cout << "First DNA Strand: \n";
-                    getline(cin, t1);
-                    gt2.make_DNA();
-                    g.push_back(gt2);
+                    cout<<"which RNA?"<<endl;
+                    cin>>d;
+                    cin.ignore();
+                    g[d-1].make_DNA();
                     cout << "-------------------------";
                 }
                 cout << "Press Enter to Continue";
@@ -139,14 +140,14 @@ void GenomeMenu(){
                     cin >> tc2;
                     cout << "How Many of Them? \n";
                     cin >> rn;
-                    rna[d].small_mutation_RNA(tc1, tc2, rn);
+                    rna[d-1].small_mutation_RNA(tc1, tc2, rn);
 
                 }else if (b == 2){
                     dna.clear();
                     for (int i = 0; i < g.size(); ++i) {
                         if (g[i].getDna()[0].length() != 0){
                             cout << i+1 << "- " << g[i].getDna()[0] << endl;
-                            cout << "   " << g[i].getDna() << endl;
+                            cout << "   " << g[i].getDna()[1] << endl;
                             dna.push_back(g[i]);
                         }
                     }
@@ -159,7 +160,7 @@ void GenomeMenu(){
                     cin >> tc2;
                     cout << "How Many of Them? \n";
                     cin >> rn;
-                    dna[d].small_mutation_DNA(tc1, tc2, rn);
+                    dna[d-1].small_mutation_DNA(tc1, tc2, rn);
                 }else{
                     cout << "Out of Range";
                     goto NEXT1;
@@ -180,18 +181,19 @@ void GenomeMenu(){
                     cout << "-------------------------";
                     cout << "Which RNA? \n";
                     cin >> d;
+                    cin.ignore();
                     cout << "Which Nucleobases You Want to Change? \n";
                     getline(cin, rbm1);
                     cout << "Change to? \n";
                     getline(cin, rbm2);
-                    rna[d].big_mutation_RNA(rbm1, rbm2);
+                    rna[d-1].big_mutation_RNA(rbm1, rbm2);
 
                 }else if (b == 2){
                     dna.clear();
                     for (int i = 0; i < g.size(); ++i) {
                         if (g[i].getDna()[0].length() != 0){
                             cout << i+1 << "- " << g[i].getDna()[0] << endl;
-                            cout << "   " << g[i].getDna() << endl;
+                            cout << "   " << g[i].getDna()[1] << endl;
                             dna.push_back(g[i]);
                         }
                     }
@@ -202,7 +204,7 @@ void GenomeMenu(){
                     getline(cin, dbm1);
                     cout << "Change to? \n";
                     getline(cin, dbm2);
-                    dna[d].big_mutation_DNA(dbm1, dbm2);
+                    dna[d-1].big_mutation_DNA(dbm1, dbm2);
                 }else{
                     cout << "Out of Range";
                     goto NEXT2;
@@ -223,25 +225,27 @@ void GenomeMenu(){
                     cout << "-------------------------";
                     cout << "Which RNA? \n";
                     cin >> d;
-                    cout << "Which Nucleobases You Want to Palindrome? \n";
+                    cin.ignore();
+                    cout << "Which Nucleobases You Want to reverse? \n";
                     getline(cin, rbm1);
-                    rna[d].reverse_mutation_RNA(rbm1);
+                    rna[d-1].reverse_mutation_RNA(rbm1);
 
                 }else if (b == 2){
                     dna.clear();
                     for (int i = 0; i < g.size(); ++i) {
                         if (g[i].getDna()[0].length() != 0){
                             cout << i+1 << "- " << g[i].getDna()[0] << endl;
-                            cout << "   " << g[i].getDna() << endl;
+                            cout << "   " << g[i].getDna()[1] << endl;
                             dna.push_back(g[i]);
                         }
                     }
                     cout << "-------------------------";
                     cout << "Which DNA? \n";
                     cin >> d;
-                    cout << "Which Nucleobase You Want to plaindrome? \n";
+                    cin.ignore();
+                    cout << "Which Nucleobase You Want to reverse? \n";
                     getline(cin, dbm1);
-                    dna[d].reverse_mutation_DNA(dbm1);
+                    dna[d-1].reverse_mutation_DNA(dbm1);
                 }else{
                     cout << "Out of Range";
                     goto NEXT;
@@ -278,6 +282,7 @@ void CellMenu(){
                 ::system("clear");
                 cout << "How Many Chromosome Your Cell Have? ";
                 cin >> a;
+                cin.ignore();
                 c.receive_chro(a);
                 cell.push_back(c);
                 ::system("clear");
